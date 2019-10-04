@@ -1,0 +1,419 @@
+#header {
+    visibility: hidden;
+}
+
+/* Based on Adam Kaplan's grid.css Adam Kaplan: www.adamkaplan.me/grid */
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media (min-width: 770px) {
+    .column {
+        float: left;
+    }
+    .column.full {
+        width: 100%;
+    }
+    .column.two-thirds {
+        width: 66.7%;
+    }
+    .column.half {
+        width: 50%;
+    }
+    .column.third {
+        width: 33.33%;
+    }
+    .column.fourth {
+        width: 25%;
+    }
+    .column.flow-opposite {
+        float: right;
+    }
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+@media (min-width: 770px) {
+    .column.flow-opposite {
+        float: right;
+    }
+}
+
+@media (min-width: 1320px) {
+    .container {
+        margin: 0 auto;
+        width: 1320px;
+    }
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    margin: 0;
+    padding: 0
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block
+}
+
+body {
+    line-height: 1
+}
+
+ol,
+ul {
+    list-style: none
+}
+
+blockquote,
+q {
+    quotes: none
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: none
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+h1 {
+    font-family: 'Hind', serif;
+    font-weight: lighter;
+    font-size: 3rem;
+    color: #413F3D;
+    line-height: 4.8rem;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+}
+
+html {
+    font-size: 62.5%;
+    text-rendering: optimizeLegibility;
+}
+
+h2 {
+    font-family: 'Hind', serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 3.0rem;
+    color: rgba(56, 55, 54, 0.50);
+    max-width: 54rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h3 {
+    font-family: 'Hind', serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 3.0rem;
+    color: rgba(56, 55, 54, 0.50);
+    max-width: 54rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h3 a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s;
+    text-decoration: none;
+    webkit-transition: color 0.2s;
+    moz-transition: color 0.2s;
+    o-transition: color 0.2s;
+    -webkit-transform: translateZ(0);
+}
+
+h3 a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+h4 {
+    font-family: 'Hind', serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 3.0rem;
+    color: black;
+    max-width: 54rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -2.0rem;
+    padding-bottom: 1.0rem;
+    text-align: center;
+}
+
+h2 a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s;
+    text-decoration: none;
+    webkit-transition: color 0.2s;
+    moz-transition: color 0.2s;
+    o-transition: color 0.2s;
+    -webkit-transform: translateZ(0);
+}
+
+h2 a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+img {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    margin-top: 5rem;
+/*    float: left;*/
+/*    margin-right: 6px;*/
+/*    border: 0.5px solid;*/
+/*    margin-bottom: -10px;*/
+/*    margin-top: -5px;*/
+    border-color: #e3e5e8;
+}
+
+hr {
+    width:30em;
+    color:#b6b7ba;
+}
+
+/*
+img:hover {
+    animation: jiggle 0.2s infinite;
+    -webkit-animation: jiggle 0.2s infinite;
+    -moz-animation-duration: 0.2s;
+    -moz-animation-name: jiggle;
+    -moz-animation-iteration-count: infinite;
+    -webkit-transform: rotate(-8);
+    -moz-transform: rotate(-8);
+}
+*/
+
+@keyframes jiggle {
+    0% {
+        transform: rotate(-8deg);
+    }
+    50% {
+        transform: rotate(8deg);
+    }
+}
+
+@-webkit-keyframes jiggle {
+    0% {
+        -webkit-transform: rotate(-8deg);
+    }
+    50% {
+        -webkit-transform: rotate(8deg);
+    }
+}
+
+@-moz-keyframes jiggle {
+    0% {
+        -moz-transform: rotate(-8deg);
+    }
+    50% {
+        -moz-transform: rotate(8deg);
+    }
+}
+
+.nav {
+    text-align: center;
+    margin-top: 3.2rem;
+    font-family: 'PT Serif', serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: rgba(56, 55, 54, 0.25);
+    color: black;
+}
+
+.nav a {
+    text-decoration: none;
+    color: rgba(56, 55, 54, 0.25);
+    padding-right: 2rem;
+    padding-left: 2rem;
+    transition: color 0.3s;
+    webkit-transition: color 0.2s;
+    moz-transition: color 0.2s;
+    o-transition: color 0.2s;
+    -webkit-transform: translateZ(0);
+}
+
+.nav a:hover {
+    color: rgba(56, 55, 54, 0.75);
+}
+
+.nav a.selected {
+    color: rgba(56, 55, 54, 0.75);
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 770px) {
+    h1 {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    h3 {
+        font-size: 1.8rem;
+        text-align: left;
+    }
+    ul {
+        font-size: 1.6rem;
+        line-height: 2.8rem;
+        margin-bottom: 6.0rem;
+        margin-top: 6.0rem;
+        text-align: left;
+    }
+    ol {
+        font-size: 1.6rem;
+        line-height: 2.8rem;
+        margin-bottom: 6.0rem;
+        margin-top: 6.0rem;
+        text-align: left;
+    }
+    .nav .column {
+        padding-top: 3.2rem;
+    }
+    .nav {
+        margin-top: 0rem;
+        font-size: 1.4rem;
+    }
+    .collection .column {
+        margin-bottom: 4px;
+    }
+}
+
+@media (min-width: 1240px) {
+    html {
+        font-size: 68%;
+    }
+}
