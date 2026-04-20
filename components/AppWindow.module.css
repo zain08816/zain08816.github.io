@@ -1,0 +1,272 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--window-radius);
+  box-shadow: var(--window-outer-shadow);
+  border: var(--window-frame-border);
+  background: var(--window-frame-bg);
+  -webkit-backdrop-filter: var(--window-frame-backdrop, none);
+  backdrop-filter: var(--window-frame-backdrop, none);
+}
+
+.windowMinimized {
+  flex: 0 0 auto;
+  min-height: 0;
+}
+
+.titleBar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.45rem 0.75rem;
+  padding-left: calc(0.75rem + var(--title-padding-start, 0px));
+  background: var(--title-bar-bg);
+  -webkit-backdrop-filter: var(--title-bar-backdrop, none);
+  backdrop-filter: var(--title-bar-backdrop, none);
+  border-bottom: var(--title-bar-border-bottom, none);
+  flex-shrink: 0;
+  cursor: var(--cursor-default, default);
+  user-select: none;
+}
+
+.titleBarWin95 {
+  padding: 0.2rem 0.35rem;
+  min-height: 28px;
+}
+
+.titleBarSystem7 {
+  gap: 0.35rem;
+  padding: 0.15rem 0.35rem;
+  min-height: 24px;
+}
+
+.titleBarDraggable {
+  cursor: grab;
+  touch-action: none;
+}
+
+.titleBarDragging {
+  cursor: grabbing;
+}
+
+.traffic {
+  display: inline-flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #555;
+  opacity: 0.75;
+}
+
+button.dot {
+  padding: 0;
+  border: none;
+  cursor: var(--cursor-default, default);
+}
+
+.dotClose {
+  background: #ff5f56;
+  opacity: 1;
+}
+
+.dotClose:hover {
+  filter: brightness(1.06);
+}
+
+.dotClose:active {
+  filter: brightness(0.92);
+}
+
+.dotYellow {
+  background: #ffbd2e;
+  opacity: 1;
+}
+
+.dotGreen {
+  background: #27c93f;
+  opacity: 1;
+}
+
+/* macOS traffic lights: flat fills + light edge for depth */
+:global([data-theme="macos"]) .dot {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 1px 2px rgba(0, 0, 0, 0.28);
+}
+
+button.dotYellow,
+button.dotGreen {
+  cursor: var(--cursor-default, default);
+}
+
+button.dotYellow:hover,
+button.dotGreen:hover {
+  filter: brightness(1.06);
+}
+
+button.dotYellow:active,
+button.dotGreen:active {
+  filter: brightness(0.92);
+}
+
+.win95Controls {
+  display: inline-flex;
+  gap: 2px;
+  flex-shrink: 0;
+  margin-left: auto;
+  order: 3;
+}
+
+.system7ControlsLeft,
+.system7ControlsRight {
+  display: inline-flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.system7ControlsRight {
+  margin-left: auto;
+  order: 3;
+}
+
+.system7Btn {
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  color: #000;
+  background: var(--window-raised-face);
+  border: 1px solid;
+  border-color: var(--window-raised-highlight) var(--window-raised-shadow)
+    var(--window-raised-shadow) var(--window-raised-highlight);
+  cursor: var(--cursor-default, default);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.system7Btn:active,
+.system7BtnToggled {
+  border-color: var(--window-raised-shadow) var(--window-raised-highlight)
+    var(--window-raised-highlight) var(--window-raised-shadow);
+}
+
+.system7CloseGlyph {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  line-height: 1;
+  transform: translateY(-0.5px);
+}
+
+.system7ShadeGlyph {
+  display: inline-block;
+  width: 9px;
+  height: 8px;
+  border: 1px solid #000;
+  background: #fff;
+  position: relative;
+}
+
+.system7ShadeGlyph::after {
+  content: "";
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  top: 2px;
+  border-top: 1px solid #000;
+}
+
+.system7ZoomGlyph {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #000;
+}
+
+.win95Btn {
+  width: 18px;
+  height: 16px;
+  padding: 0;
+  font-size: 10px;
+  line-height: 1;
+  font-family: var(--font-ui);
+  color: #000;
+  background: var(--window-raised-face);
+  border: 2px solid;
+  border-color: var(--window-raised-highlight) var(--window-raised-shadow)
+    var(--window-raised-shadow) var(--window-raised-highlight);
+  cursor: var(--cursor-default, default);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.win95Btn:active {
+  border-color: var(--window-raised-shadow) var(--window-raised-highlight)
+    var(--window-raised-highlight) var(--window-raised-shadow);
+  padding-top: 1px;
+  padding-left: 1px;
+}
+
+.win95BtnToggled {
+  border-color: var(--window-raised-shadow) var(--window-raised-highlight)
+    var(--window-raised-highlight) var(--window-raised-shadow);
+  padding-top: 1px;
+  padding-left: 1px;
+}
+
+.title {
+  flex: 1;
+  text-align: var(--title-text-align, center);
+  font-size: 0.72rem;
+  font-weight: var(--title-bar-font-weight, 600);
+  color: var(--title-bar-fg);
+  letter-spacing: var(--title-bar-letter-spacing, 0.02em);
+  font-family: var(--font-ui);
+  min-width: 0;
+}
+
+.titleWin95 {
+  font-size: 12px;
+}
+
+:global([data-theme="system7"]) .title {
+  font-size: 12px;
+  line-height: 1.1;
+}
+
+.spacerMacos {
+  width: 52px;
+  flex-shrink: 0;
+  order: 2;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: var(--window-body-min-height);
+  min-width: 0;
+}
+
+.bodyTerminal {
+  background: var(--window-body-bg);
+}
+
+.bodyPanel {
+  background: var(--app-panel-bg);
+  color: var(--app-panel-fg);
+  overflow: auto;
+}
+
+.scrollInner {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}

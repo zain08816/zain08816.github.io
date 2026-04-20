@@ -1,0 +1,28 @@
+.wrap {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  font-family: var(--font-ui);
+}
+
+.breadcrumbRow {
+  width: 100%;
+  max-width: 42rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--standalone-fg);
+}
+
+.text {
+  color: var(--standalone-muted);
+}
+
+.wrap a {
+  color: var(--standalone-accent);
+}

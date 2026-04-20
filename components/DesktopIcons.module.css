@@ -1,0 +1,156 @@
+.iconLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.row {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.row > li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row > li::marker {
+  content: "";
+}
+
+.icon {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  width: 84px;
+  padding: 0.4rem 0.35rem 0.3rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--desktop-icon-fg, #fff);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  cursor: var(--cursor-pointer, pointer);
+  user-select: none;
+  -webkit-user-select: none;
+  transition: background-color 80ms ease, border-color 80ms ease;
+}
+
+.icon:hover {
+  background: var(--desktop-icon-hover-bg, rgba(255, 255, 255, 0.1));
+  border-color: var(--desktop-icon-hover-border, rgba(255, 255, 255, 0.18));
+}
+
+.icon:focus-visible {
+  outline: 2px solid var(--desktop-icon-focus, rgba(100, 184, 255, 0.7));
+  outline-offset: 2px;
+}
+
+.icon:active {
+  background: var(--desktop-icon-active-bg, rgba(255, 255, 255, 0.18));
+}
+
+.glyph {
+  width: 44px;
+  height: 44px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+
+.label {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+  word-break: break-word;
+}
+
+/* Win95: blocky highlight + crisp text */
+:global([data-theme="win95"]) .icon {
+  border-radius: 0;
+  color: #ffffff;
+}
+:global([data-theme="win95"]) .icon:hover {
+  background: rgba(0, 0, 128, 0.35);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+:global([data-theme="win95"]) .icon:focus-visible {
+  outline: 1px dotted #ffffff;
+  outline-offset: 1px;
+}
+
+/* macOS light: switch label color so it stays readable on the light wallpaper */
+:global([data-theme="macos"][data-appearance="light"]) .icon {
+  color: rgba(29, 29, 31, 0.92);
+}
+:global([data-theme="macos"][data-appearance="light"]) .label {
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+:global([data-theme="macos"][data-appearance="light"]) .icon:hover {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+:global([data-theme="system7"]) .icon {
+  border-radius: 0;
+  width: 82px;
+  padding: 0.4rem 0.45rem 0.3rem;
+  gap: 0.12rem;
+  font-size: 11px;
+  color: #000000;
+}
+
+:global([data-theme="system7"]) .icon:hover {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(0, 0, 0, 0.45);
+}
+
+:global([data-theme="system7"]) .icon:focus-visible {
+  outline: 1px dotted #000000;
+  outline-offset: 1px;
+}
+
+:global([data-theme="system7"]) .glyph {
+  width: 36px;
+  height: 36px;
+  filter: none;
+}
+
+:global([data-theme="system7"]) .label {
+  text-shadow: none;
+}
+
+@media (max-width: 720px) {
+  .row {
+    top: 0.35rem;
+    left: 0.35rem;
+    right: 0.35rem;
+    gap: 0.25rem;
+  }
+  .icon {
+    width: 72px;
+    padding: 0.3rem 0.25rem 0.25rem;
+    font-size: 11px;
+  }
+  .glyph {
+    width: 38px;
+    height: 38px;
+  }
+}

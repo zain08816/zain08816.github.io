@@ -1,0 +1,96 @@
+.page {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem min(4vw, 2rem);
+  font-family: var(--font-ui);
+  color: var(--standalone-fg);
+}
+
+.h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--app-panel-fg);
+}
+
+.page .h1 {
+  color: var(--standalone-fg);
+}
+
+.lead {
+  color: var(--app-panel-muted);
+  margin-bottom: 1.5rem;
+}
+
+.page .lead {
+  color: var(--standalone-muted);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  margin-bottom: 0.65rem;
+}
+
+.list a {
+  font-weight: 600;
+  color: var(--app-panel-accent);
+}
+
+.page .list a {
+  color: var(--standalone-accent);
+}
+
+.summary {
+  color: var(--app-panel-muted);
+  font-weight: 400;
+}
+
+.page .summary {
+  color: var(--standalone-muted);
+}
+
+.empty {
+  color: var(--app-panel-muted);
+}
+
+.page .empty {
+  color: var(--standalone-muted);
+}
+
+/* Project detail body (markdown) — only used on /projects/[slug] inside .page */
+.content {
+  margin-top: 1.5rem;
+  line-height: 1.65;
+  color: var(--standalone-fg);
+}
+
+.content :global(p) {
+  margin: 0.75rem 0;
+}
+
+.content :global(h2),
+.content :global(h3) {
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.content :global(pre) {
+  overflow: auto;
+  padding: 0.75rem 1rem;
+  border-radius: var(--window-radius);
+  background: var(--standalone-pre-bg);
+  border: 1px solid var(--standalone-pre-border);
+}
+
+.content :global(code) {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.content :global(a) {
+  color: var(--standalone-accent);
+}

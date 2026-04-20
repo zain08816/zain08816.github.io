@@ -1,0 +1,133 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+  font-family: var(--font-terminal), var(--font-mono), ui-monospace, monospace;
+  font-variant-ligatures: none;
+  color: var(--terminal-fg);
+}
+
+.scrollback {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  min-height: 12rem;
+}
+
+.welcome {
+  margin-bottom: 0.75rem;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  margin-bottom: 0.15rem;
+  font-size: inherit;
+}
+
+.helpIndent,
+.helpGap {
+  flex-shrink: 0;
+  white-space: pre;
+}
+
+.summary {
+  color: var(--terminal-muted);
+  flex: 1;
+  min-width: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.subhead {
+  color: var(--terminal-fg);
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0 0 0.15rem;
+}
+
+.prePrompt {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0 0 0.15rem;
+  color: var(--terminal-muted);
+}
+
+.stdout {
+  color: var(--terminal-fg);
+}
+
+.stderr {
+  color: var(--terminal-err);
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--terminal-border);
+  padding: 0.35rem 0.75rem;
+  gap: 0;
+}
+
+.promptLabel {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.prompt {
+  font-size: 0.8125rem;
+  color: var(--terminal-accent);
+  white-space: pre;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--terminal-fg);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  caret-color: var(--terminal-accent);
+}
+
+.hint {
+  font-size: 0.65rem;
+  color: var(--terminal-muted);
+  padding: 0 0.75rem 0.35rem;
+  opacity: 0.85;
+}
+
+:global([data-theme="system7"]) .scrollback {
+  font-size: 13px;
+  line-height: 1.2;
+  padding: 0.55rem 0.75rem;
+}
+
+:global([data-theme="system7"]) .form {
+  padding: 0.2rem 0.5rem;
+  border-top: 1px solid #000;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+:global([data-theme="system7"]) .prompt,
+:global([data-theme="system7"]) .input {
+  font-size: 13px;
+}
+
+:global([data-theme="system7"]) .hint {
+  font-size: 11px;
+  padding: 0 0.5rem 0.25rem;
+  letter-spacing: 0;
+}

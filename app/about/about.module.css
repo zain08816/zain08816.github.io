@@ -1,0 +1,163 @@
+.page {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 2rem min(4vw, 2rem) 3rem;
+  font-family: var(--font-ui);
+  line-height: 1.55;
+  color: var(--standalone-fg);
+}
+
+.h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.35rem;
+}
+
+.headline {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--app-panel-muted);
+}
+
+.page .headline {
+  color: var(--standalone-muted);
+}
+
+.meta {
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+  color: var(--app-panel-muted);
+}
+
+.page .meta {
+  color: var(--standalone-muted);
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.contact a {
+  color: var(--app-panel-accent);
+}
+
+.page .contact a {
+  color: var(--standalone-accent);
+}
+
+.section {
+  margin-bottom: 1.75rem;
+}
+
+.sectionTitle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--app-panel-muted);
+  margin: 0 0 0.85rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--app-panel-border);
+}
+
+.page .sectionTitle {
+  color: var(--standalone-muted);
+  border-bottom-color: var(--standalone-border);
+}
+
+.summary {
+  margin: 0;
+  max-width: 42rem;
+}
+
+.role {
+  margin-bottom: 1.15rem;
+}
+
+.role:last-child {
+  margin-bottom: 0;
+}
+
+.roleTitle {
+  font-weight: 600;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.roleMeta {
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+  color: var(--app-panel-muted);
+}
+
+.page .roleMeta {
+  color: var(--standalone-muted);
+}
+
+.roleDetail {
+  margin: 0.45rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.92rem;
+  color: var(--app-panel-fg);
+  opacity: 0.92;
+}
+
+.page .roleDetail {
+  color: var(--standalone-fg);
+}
+
+.roleDetail li {
+  margin-bottom: 0.35rem;
+}
+
+.skills {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.65rem;
+}
+
+.skills li {
+  display: inline-block;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.85rem;
+  border-radius: var(--menu-btn-radius);
+  background: var(--app-panel-chip-bg);
+  border: 1px solid var(--app-panel-chip-border);
+  color: var(--app-panel-fg);
+}
+
+.page .skills li {
+  background: var(--standalone-chip-bg);
+  border-color: var(--standalone-chip-border);
+  color: var(--standalone-fg);
+}
+
+.edu {
+  margin: 0;
+}
+
+.eduTitle {
+  font-weight: 600;
+  margin: 0;
+}
+
+.eduMeta {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  color: var(--app-panel-muted);
+}
+
+.page .eduMeta {
+  color: var(--standalone-muted);
+}

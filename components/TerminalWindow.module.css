@@ -1,0 +1,56 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+  max-width: 52rem;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--window-shadow);
+  border: 1px solid var(--terminal-border);
+  background: var(--terminal-bg);
+}
+
+.titleBar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.45rem 0.75rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  border-bottom: 1px solid var(--terminal-border);
+}
+
+.traffic {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #555;
+  opacity: 0.75;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--terminal-muted);
+  letter-spacing: 0.02em;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 18rem;
+}
