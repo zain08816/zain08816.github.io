@@ -12,6 +12,7 @@ import { coffeeCmd } from "@/lib/commands/coffee";
 import { eastereggCmd } from "@/lib/commands/easteregg";
 import { fortuneCmd } from "@/lib/commands/fortune";
 import { matrixCmd } from "@/lib/commands/matrix";
+import { konamiCmd } from "@/lib/commands/konami";
 
 export interface RegistryDeps {
   site: SiteConfig;
@@ -40,6 +41,7 @@ export function createShellRegistry(deps: RegistryDeps): CommandDef[] {
     eastereggCmd,
     fortuneCmd,
     matrixCmd,
+    konamiCmd,
     buildWelcomeCommand(),
   ];
 

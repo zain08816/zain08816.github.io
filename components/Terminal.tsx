@@ -15,7 +15,10 @@ import type { ShellContext } from "@/lib/shell/types";
 import { isCommandVisibleInCatalog } from "@/lib/shell/formatCommandList";
 import { splitArgv, parseOpts } from "@/lib/shell/parser";
 import { resolveCd } from "@/lib/shell/vfs";
-import { tabCompleteLine } from "@/lib/shell/tabCompletion";
+import {
+  computeCompletionSlot,
+  type CompletionSlot,
+} from "@/lib/shell/tabCompletion";
 import { useTheme } from "@/components/ThemeProvider";
 import { CommandChip } from "./CommandChip";
 import styles from "./Terminal.module.css";
@@ -124,6 +127,20 @@ export function Terminal({
   const [lastExit, setLastExit] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  /**
+   * Active tab-completion cycle, if any. Tracks the slot the completer
+   * produced plus the current index so repeated Tab presses rotate through
+   * the candidates. Cleared whenever the input changes by any means other
+   * than the Tab key itself.
+   */
+  const cycleRef = useRef<
+    | (CompletionSlot & { index: number; rendered: string })
+    | null
+  >(null);
+  const resetCycle = useCallback(() => {
+    cycleRef.current = null;
+  }, []);
   const focusInput = useCallback(() => {
     const el = inputRef.current;
     if (!el) return;
@@ -202,11 +219,10 @@ export function Terminal({
 
       const cmd = cmdName ? byName.get(cmdName) : undefined;
 
-      const prefix: ScrollLine[] = [{ kind: "prompt", text: `${promptText}${line}` }];
+      appendLines([{ kind: "prompt", text: `${promptText}${line}` }]);
 
       if (!cmd) {
         appendLines([
-          ...prefix,
           {
             kind: "stderr",
             text: `sh: ${cmdName}: command not found`,
@@ -231,7 +247,6 @@ export function Terminal({
         result = cmd.run(argv, opts, ctx);
       } catch (e) {
         appendLines([
-          ...prefix,
           {
             kind: "stderr",
             text: e instanceof Error ? e.message : String(e),
@@ -249,7 +264,6 @@ export function Terminal({
       }
       if (result.action === "welcome") {
         appendLines([
-          ...prefix,
           {
             kind: "welcome",
             segments: buildWelcomeSegments(site, registry),
@@ -258,14 +272,14 @@ export function Terminal({
         return;
       }
 
-      const body: ScrollLine[] = [...prefix];
+      const body: ScrollLine[] = [];
       for (const t of result.stdout) {
         body.push({ kind: "stdout", text: t });
       }
       for (const t of result.stderr) {
         body.push({ kind: "stderr", text: t });
       }
-      appendLines(body);
+      if (body.length) appendLines(body);
     },
     [
       appendLines,
@@ -338,15 +352,44 @@ export function Terminal({
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Tab") {
         e.preventDefault();
-        const next = tabCompleteLine(
+        const forward = !e.shiftKey;
+
+        const active = cycleRef.current;
+        if (active && active.rendered === input) {
+          const count = active.candidates.length;
+          const nextIdx = forward
+            ? (active.index + 1) % count
+            : (active.index - 1 + count) % count;
+          const rendered =
+            active.stem + active.candidates[nextIdx] + active.suffix;
+          cycleRef.current = { ...active, index: nextIdx, rendered };
+          setInput(rendered);
+          return;
+        }
+
+        const slot = computeCompletionSlot(
           input,
           primaryNames,
           byName,
           completionCtx
         );
-        if (next !== null) setInput(next);
+        if (!slot) {
+          cycleRef.current = null;
+          return;
+        }
+
+        const startIdx = forward ? 0 : slot.candidates.length - 1;
+        const rendered =
+          slot.stem + slot.candidates[startIdx] + slot.suffix;
+        cycleRef.current =
+          slot.candidates.length > 1
+            ? { ...slot, index: startIdx, rendered }
+            : null;
+        setInput(rendered);
         return;
       }
+
+      resetCycle();
 
       if (e.key === "ArrowUp") {
         e.preventDefault();
@@ -404,6 +447,7 @@ export function Terminal({
       promptText,
       primaryNames,
       completionCtx,
+      resetCycle,
     ]
   );
 
@@ -441,9 +485,13 @@ export function Terminal({
           autoComplete="off"
           spellCheck={false}
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => {
+            resetCycle();
+            setInput(e.target.value);
+          }}
           onKeyDown={onKeyDown}
           onPaste={(e) => {
+            resetCycle();
             const t = e.clipboardData.getData("text");
             if (t.includes("\n")) {
               e.preventDefault();

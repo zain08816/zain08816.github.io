@@ -2,17 +2,17 @@ import type { CommandDef } from "@/lib/shell/types";
 
 const EGGS = [
   "Easter egg: the Konami code gives a random surprise.",
-  "Easter egg: hidden commands don't show up in `help`.",
-  "Easter egg: try `matrix --redpill`.",
+  "Easter egg: hidden commands don't show up in `help` (unless you use --hidden).",
+  "Easter egg: `matrix` to follow the white rabbit.",
   "Easter egg: `sl` still rides the rails here.",
-  "Easter egg: fortune favors the persistent.",
+  "Easter egg: `fortune` favors the persistent.",
+  "Easter egg: `coffee` is always brewing.",
 ];
 
 export const eastereggCmd: CommandDef = {
   name: "easteregg",
   aliases: ["egg"],
   category: "fun",
-  hidden: true,
   summary: "Reveal a hidden hint",
   usage: "easteregg",
   run(_argv, opts) {

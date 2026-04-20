@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { KonamiEffects } from "@/components/KonamiEffects";
+import { MatrixRain } from "@/components/MatrixRain";
 import { siteConfig } from "@/site.config";
 
 const geistSans = Geist({
@@ -65,6 +66,7 @@ export default function RootLayout({
           defaultMacAppearance={siteConfig.defaultMacAppearance}
         >
           <KonamiEffects />
+          <MatrixRain />
           {children}
         </ThemeProvider>
       </body>

@@ -42,6 +42,17 @@ export type RunHandler = (
   ctx: ShellContext
 ) => CommandResult;
 
+/**
+ * Declarative completion candidates for a single argv position (0 == first
+ * arg after the command name). Either a static list, or a function that can
+ * read the already-typed argv/context (e.g. "the second arg depends on the
+ * first"). Return flags (`--foo`) and positionals mixed — the completer
+ * filters them based on what the user has typed so far.
+ */
+export type ArgSpec =
+  | readonly string[]
+  | ((argv: string[], ctx: ShellContext) => string[]);
+
 export interface CommandDef {
   name: string;
   aliases?: string[];
@@ -51,6 +62,16 @@ export interface CommandDef {
   summary: string;
   usage: string;
   run: RunHandler;
-  /** Optional completion for argv after command name */
+  /**
+   * Per-position completion candidates. Index 0 is the first arg after the
+   * command name. `--help` / `-h` are always offered automatically when the
+   * user is completing a flag.
+   */
+  args?: readonly ArgSpec[];
+  /**
+   * Fully custom completer. When defined, it overrides `args` entirely.
+   * Use this only for completions that can't be expressed as "per-position
+   * list" (e.g. multi-token subcommand trees).
+   */
   complete?: (argv: string[], ctx: ShellContext) => string[];
 }

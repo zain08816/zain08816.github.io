@@ -2,13 +2,23 @@ import type { CommandDef } from "@/lib/shell/types";
 import { THEME_OPTIONS } from "@/lib/themes/constants";
 import { isMacAppearance, isThemeId } from "@/lib/themes/types";
 
-const THEME_IDS = THEME_OPTIONS.map((t) => t.id).join(", ");
+const THEME_ID_LIST = THEME_OPTIONS.map((t) => t.id);
+const THEME_IDS = THEME_ID_LIST.join(", ");
 
 export const themeCmd: CommandDef = {
   name: "theme",
   category: "system",
   summary: "View or switch desktop theme",
   usage: "theme [list|<theme>|macos <light|dark>|appearance <light|dark>]",
+  args: [
+    ["list", "macos", "appearance", ...THEME_ID_LIST],
+    (argv) => {
+      const first = argv[1];
+      return first === "macos" || first === "appearance"
+        ? ["light", "dark"]
+        : [];
+    },
+  ],
   run(_argv, opts, ctx) {
     if (opts.help) {
       return {

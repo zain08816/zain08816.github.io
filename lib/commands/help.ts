@@ -4,6 +4,8 @@ import {
   renderCommandTable,
 } from "@/lib/shell/formatCommandList";
 
+const USAGE = "help [--hidden] [COMMAND]";
+
 export function buildHelpCommand(
   getAllCommands: () => CommandDef[]
 ): CommandDef {
@@ -12,20 +14,51 @@ export function buildHelpCommand(
     aliases: ["man"],
     category: "session",
     summary: "Print command catalog",
-    usage: "help [COMMAND]",
+    usage: USAGE,
+    complete(argv) {
+      const partial = argv[argv.length - 1] ?? "";
+      const prior = argv.slice(1, -1);
+      const includeHidden = prior.some(
+        (a) => a === "--hidden" || a === "--all" || a === "-a"
+      );
+      const cmds = getAllCommands();
+      const visible = includeHidden
+        ? cmds
+        : cmds.filter(isCommandVisibleInCatalog);
+
+      if (partial.startsWith("-")) {
+        return ["--hidden", "--all", "--help", "-h"];
+      }
+
+      // Only one command name makes sense; if the user already typed one,
+      // offer nothing further.
+      const alreadyNamed = prior.some((a) =>
+        visible.some((c) => c.name === a || c.aliases?.includes(a))
+      );
+      return alreadyNamed ? [] : visible.map((c) => c.name);
+    },
     run(_argv, opts) {
-      const allCommands = getAllCommands();
-      const visibleCommands = allCommands.filter(isCommandVisibleInCatalog);
       if (opts.help) {
         return {
-          stdout: ["usage: help [COMMAND]"],
+          stdout: [`usage: ${USAGE}`],
           stderr: [],
           exitCode: 0,
         };
       }
+
+      const includeHidden =
+        opts.flags.has("--hidden") ||
+        opts.flags.has("--all") ||
+        opts.flags.has("-a");
+
+      const allCommands = getAllCommands();
+      const catalog = includeHidden
+        ? allCommands
+        : allCommands.filter(isCommandVisibleInCatalog);
+
       const target = opts.positional[0];
       if (target) {
-        const cmd = visibleCommands.find(
+        const cmd = catalog.find(
           (c) => c.name === target || c.aliases?.includes(target)
         );
         if (!cmd) {
@@ -42,11 +75,15 @@ export function buildHelpCommand(
         };
       }
 
+      const header = includeHidden
+        ? "Available commands (including hidden):"
+        : "Available commands:";
+
       return {
         stdout: [
-          "Available commands:",
+          header,
           "",
-          ...renderCommandTable(visibleCommands),
+          ...renderCommandTable(catalog, { includeHidden }),
         ],
         stderr: [],
         exitCode: 0,
