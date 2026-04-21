@@ -142,6 +142,6 @@ export const siteConfig: SiteConfig = {
   seo: {
     title: "Hi, I'm Zain",
     description:
-      "Personal portfolio: desktop shell with themed windows and a Linux-inspired terminal. Projects, links, and contact.",
+      "Zain Ali — Software Engineer. An interactive desktop portfolio with a terminal, themed windows, and a few easter eggs.",
   },
 };
