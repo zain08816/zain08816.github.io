@@ -72,6 +72,37 @@
   opacity: 0.75;
 }
 
+.messageChoices {
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 100%;
+  text-align: left;
+}
+
+.messageChoice {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: baseline;
+  gap: 0.85rem;
+  font-size: 0.85rem;
+}
+
+.messageChoiceCmd {
+  color: #d7ffd9;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  text-shadow: 0 0 8px rgba(120, 255, 160, 0.6);
+}
+
+.messageChoiceDesc {
+  color: #baffc8;
+  opacity: 0.8;
+}
+
 @keyframes matrixFadeIn {
   from {
     opacity: 0;

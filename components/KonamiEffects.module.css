@@ -429,6 +429,28 @@
   image-rendering: crisp-edges;
 }
 
+.dragonSprite {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url("/sprites/dragon-walk.png");
+  background-repeat: no-repeat;
+  background-size: 800% 100%;
+  background-position-x: 0%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  animation: dragonWalk 0.8s steps(8, jump-none) infinite;
+}
+
+@keyframes dragonWalk {
+  from {
+    background-position-x: 0%;
+  }
+  to {
+    background-position-x: 100%;
+  }
+}
+
 @keyframes spriteWalk {
   0% {
     transform: translateX(-120px);

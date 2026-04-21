@@ -33,9 +33,12 @@ interface StarfieldStar {
   hue: number;
 }
 
+type SpriteKind = "monkey" | "cat" | "dragon";
+
 interface SpriteWalkState {
   id: number;
   flipped: boolean;
+  kind: SpriteKind;
 }
 
 type KonamiEffect = {
@@ -172,6 +175,81 @@ function CodeMonkeySprite() {
       <rect x="12" y="19" width="2" height="2" fill="#4a2f18" />
       <rect x="5" y="21" width="4" height="1" fill="#2a1808" />
       <rect x="11" y="21" width="4" height="1" fill="#2a1808" />
+    </svg>
+  );
+}
+
+function DragonSprite() {
+  return <div className={styles.dragonSprite} role="img" aria-hidden />;
+}
+
+function AstronautCatSprite() {
+  return (
+    <svg
+      className={styles.spriteSvg}
+      viewBox="0 0 20 22"
+      xmlns="http://www.w3.org/2000/svg"
+      shapeRendering="crispEdges"
+      aria-hidden
+    >
+      <rect x="8" y="0" width="4" height="1" fill="#b6e7ff" />
+      <rect x="6" y="1" width="8" height="1" fill="#b6e7ff" />
+      <rect x="4" y="2" width="12" height="1" fill="#b6e7ff" />
+      <rect x="3" y="3" width="14" height="5" fill="#b6e7ff" />
+      <rect x="4" y="8" width="12" height="1" fill="#b6e7ff" />
+
+      <rect x="5" y="2" width="1" height="1" fill="#ffffff" />
+      <rect x="4" y="3" width="1" height="2" fill="#ffffff" />
+
+      <rect x="5" y="3" width="2" height="2" fill="#f0c090" />
+      <rect x="13" y="3" width="2" height="2" fill="#f0c090" />
+      <rect x="6" y="4" width="1" height="1" fill="#d87088" />
+      <rect x="13" y="4" width="1" height="1" fill="#d87088" />
+
+      <rect x="7" y="4" width="6" height="1" fill="#f0c090" />
+      <rect x="5" y="5" width="10" height="3" fill="#f0c090" />
+      <rect x="6" y="8" width="8" height="1" fill="#f0c090" />
+
+      <rect x="7" y="6" width="1" height="1" fill="#7dfc91" />
+      <rect x="12" y="6" width="1" height="1" fill="#7dfc91" />
+
+      <rect x="9" y="7" width="2" height="1" fill="#d87088" />
+
+      <rect x="8" y="8" width="1" height="1" fill="#4a2f18" />
+      <rect x="11" y="8" width="1" height="1" fill="#4a2f18" />
+
+      <rect x="3" y="9" width="14" height="1" fill="#2a2a34" />
+      <rect x="3" y="10" width="14" height="1" fill="#6a6a76" />
+
+      <rect x="3" y="11" width="14" height="5" fill="#e8e8e8" />
+      <rect x="3" y="11" width="1" height="5" fill="#b8b8c0" />
+      <rect x="16" y="11" width="1" height="5" fill="#b8b8c0" />
+
+      <rect x="2" y="12" width="1" height="3" fill="#e8e8e8" />
+      <rect x="17" y="12" width="1" height="3" fill="#e8e8e8" />
+      <rect x="2" y="15" width="1" height="1" fill="#b8b8c0" />
+      <rect x="17" y="15" width="1" height="1" fill="#b8b8c0" />
+
+      <rect x="7" y="12" width="6" height="3" fill="#0a0f18" />
+      <rect x="8" y="13" width="1" height="1" fill="#7dfc91" />
+      <rect x="10" y="13" width="1" height="1" fill="#facc15" />
+      <rect x="12" y="13" width="1" height="1" fill="#fb7185" />
+
+      <rect x="3" y="16" width="14" height="1" fill="#4a4a56" />
+      <rect x="9" y="16" width="2" height="1" fill="#facc15" />
+
+      <rect x="5" y="17" width="4" height="3" fill="#e8e8e8" />
+      <rect x="11" y="17" width="4" height="3" fill="#e8e8e8" />
+      <rect x="5" y="17" width="1" height="3" fill="#b8b8c0" />
+      <rect x="11" y="17" width="1" height="3" fill="#b8b8c0" />
+
+      <rect x="4" y="20" width="5" height="2" fill="#3a3a46" />
+      <rect x="11" y="20" width="5" height="2" fill="#3a3a46" />
+      <rect x="4" y="21" width="5" height="1" fill="#1a1a22" />
+      <rect x="11" y="21" width="5" height="1" fill="#1a1a22" />
+
+      <rect x="1" y="18" width="2" height="1" fill="#f0c090" />
+      <rect x="0" y="17" width="1" height="2" fill="#f0c090" />
     </svg>
   );
 }
@@ -320,9 +398,12 @@ export function KonamiEffects() {
   }, []);
 
   const triggerSpriteWalk = useCallback(() => {
+    const kinds: SpriteKind[] = ["monkey", "cat", "dragon"];
+    const kind = kinds[Math.floor(Math.random() * kinds.length)]!;
     setSpriteWalk({
       id: Date.now(),
       flipped: Math.random() < 0.5,
+      kind,
     });
     if (spriteTimerRef.current !== null) {
       window.clearTimeout(spriteTimerRef.current);
@@ -608,7 +689,13 @@ export function KonamiEffects() {
                   } as CSSProperties
                 }
               >
-                <CodeMonkeySprite />
+                {spriteWalk.kind === "monkey" ? (
+                  <CodeMonkeySprite />
+                ) : spriteWalk.kind === "dragon" ? (
+                  <DragonSprite />
+                ) : (
+                  <AstronautCatSprite />
+                )}
               </div>
             </div>
           </div>

@@ -71,7 +71,7 @@ From `SECURITY_AUDIT.md` §5 — none of them appear applied yet:
 But `lib/shell/registry.ts` actually wires:
 
 ```
-about, stackCmd, themeCmd, clearCmd, slCmd, coffeeCmd,
+about, stackCmd, themeCmd, clearCmd, slCmd, chaiCmd,
 eastereggCmd, fortuneCmd, matrixCmd, welcome, help
 ```
 

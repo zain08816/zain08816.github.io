@@ -8,7 +8,7 @@ import { buildWelcomeCommand } from "@/lib/commands/welcome";
 import { themeCmd } from "@/lib/commands/theme";
 import { stackCmd } from "@/lib/commands/stack";
 import { slCmd } from "@/lib/commands/sl";
-import { coffeeCmd } from "@/lib/commands/coffee";
+import { chaiCmd } from "@/lib/commands/chai";
 import { eastereggCmd } from "@/lib/commands/easteregg";
 import { fortuneCmd } from "@/lib/commands/fortune";
 import { matrixCmd } from "@/lib/commands/matrix";
@@ -37,7 +37,7 @@ export function createShellRegistry(deps: RegistryDeps): CommandDef[] {
     themeCmd,
     clearCmd,
     slCmd,
-    coffeeCmd,
+    chaiCmd,
     eastereggCmd,
     fortuneCmd,
     matrixCmd,

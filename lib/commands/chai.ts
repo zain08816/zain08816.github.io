@@ -1,22 +1,22 @@
 import type { CommandDef } from "@/lib/shell/types";
 
 const FINISHERS = [
-  "Brew complete. Productivity +15%.",
+  "Chai complete. Productivity +15%.",
   "Cup served. Time to ship.",
-  "Beans optimized. Compiler satisfied.",
+  "Spices optimized. Compiler satisfied.",
 ];
 
-export const coffeeCmd: CommandDef = {
-  name: "coffee",
+export const chaiCmd: CommandDef = {
+  name: "chai",
   aliases: ["brew"],
   category: "fun",
   hidden: true,
-  summary: "Brew virtual coffee",
-  usage: "coffee",
+  summary: "Brew virtual chai",
+  usage: "chai",
   run(_argv, opts) {
     if (opts.help) {
       return {
-        stdout: ["usage: coffee"],
+        stdout: ["usage: chai"],
         stderr: [],
         exitCode: 0,
       };
@@ -25,10 +25,10 @@ export const coffeeCmd: CommandDef = {
     const finisher = FINISHERS[Math.floor(Math.random() * FINISHERS.length)];
     return {
       stdout: [
-        "[#....] Grinding beans...",
-        "[##...] Heating water...",
-        "[###..] Pour-over in progress...",
-        "[####.] Debugging while steeping...",
+        "[#....] Crushing cardamom...",
+        "[##...] Simmering milk...",
+        "[###..] Steeping black tea...",
+        "[####.] Debugging while stirring...",
         "[#####] " + finisher,
       ],
       stderr: [],

@@ -2,9 +2,15 @@ import type { CommandDef } from "@/lib/shell/types";
 
 type MatrixVariant = "default" | "red" | "blue";
 
+interface MatrixMessage {
+  title: string;
+  sub?: string;
+  choices?: { cmd: string; desc: string }[];
+}
+
 function triggerRain(
   variant: MatrixVariant,
-  message?: { title: string; sub?: string },
+  message?: MatrixMessage,
   durationMs?: number
 ) {
   if (typeof window === "undefined") return;
@@ -118,7 +124,17 @@ export const matrixCmd: CommandDef = {
       "default",
       {
         title: "WAKE UP",
-        sub: "matrix --redpill   ·   matrix --bluepill",
+        sub: "Two pills. One choice.",
+        choices: [
+          {
+            cmd: "matrix --redpill",
+            desc: "See how deep the rabbit hole goes.",
+          },
+          {
+            cmd: "matrix --bluepill",
+            desc: "Wake up and believe whatever you want.",
+          },
+        ],
       },
       9000
     );

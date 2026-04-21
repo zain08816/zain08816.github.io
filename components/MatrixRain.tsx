@@ -5,10 +5,21 @@ import styles from "./MatrixRain.module.css";
 
 export type MatrixRainVariant = "default" | "red" | "blue";
 
+interface MatrixRainChoice {
+  cmd: string;
+  desc: string;
+}
+
+interface MatrixRainMessage {
+  title: string;
+  sub?: string;
+  choices?: MatrixRainChoice[];
+}
+
 interface MatrixRainDetail {
   variant?: MatrixRainVariant;
   durationMs?: number;
-  message?: { title: string; sub?: string };
+  message?: MatrixRainMessage;
   /** Non-blocking mode: transparent background, no click/key dismissal, no hint. */
   overlay?: boolean;
 }
@@ -270,6 +281,16 @@ export function MatrixRain() {
         <div className={styles.message}>
           <div className={styles.messageTitle}>{message.title}</div>
           {message.sub && <div className={styles.messageSub}>{message.sub}</div>}
+          {message.choices && message.choices.length > 0 && (
+            <ul className={styles.messageChoices}>
+              {message.choices.map((choice) => (
+                <li key={choice.cmd} className={styles.messageChoice}>
+                  <span className={styles.messageChoiceCmd}>{choice.cmd}</span>
+                  <span className={styles.messageChoiceDesc}>{choice.desc}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
       {!overlay && (

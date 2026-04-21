@@ -6,9 +6,10 @@ A static [Next.js](https://nextjs.org/) personal site styled as a tiny desktop e
 
 - **Desktop shell** — open/close/minimize/maximize, drag windows, focus stacking (`components/DesktopEnvironment.tsx`).
 - **Themes** — Windows 95, Mac System 7, macOS (light/dark). Picked at build time via `siteConfig.defaultTheme` and switchable at runtime through the `theme` command or menu bar.
-- **Terminal** — history, tab completion, piping/chaining handled in `lib/shell/`. Commands live in `lib/commands/` and are registered in `lib/shell/registry.ts`.
+- **Terminal** — history, tab completion, piping/chaining handled in `lib/shell/`. Commands live in `lib/commands/` and are registered in `lib/shell/registry.ts`. Commands can be marked `hidden` to keep them out of `help` / welcome / tab completion until surfaced with `help --hidden`.
 - **Markdown projects** — one file per project in `content/projects/*.md` (frontmatter + body). Slugs drive `/projects/[slug]/`.
-- **Easter eggs** — joke/hidden commands (`sl`, `coffee`, `fortune`, `matrix`, `easteregg`) plus a classic Konami code effect (`components/KonamiEffects.tsx`). `easteregg` drops a random hint toward any of them.
+- **Easter eggs** — joke commands (`sl`, `chai`, `fortune`, `easteregg`) plus hidden ones (`matrix`, `konami`). The Konami code (or the hidden `konami` command) rolls a random effect from a pool of 10: confetti, matrix rain, retro lives-up, CRT glitch, gravity flip, color invert, boot rewind, cursor multiplier, starfield warp, and sprite walk (`lib/konami/effects.ts`, `components/KonamiEffects.tsx`). `easteregg` drops a random hint toward any of them.
+- **Matrix rain overlay** — `components/MatrixRain.tsx` renders a full-screen katakana/binary rain with red/blue/green variants, used by both `matrix --redpill|--bluepill` and the Konami `matrix-rain` effect.
 - **Fully static** — `output: "export"` in `next.config.ts`; build produces `out/`.
 
 ## Quick start
@@ -44,27 +45,55 @@ Three chrome themes are defined under `app/themes/` and registered in `lib/theme
 | `system7` | Mac System 7 |
 | `macos`   | macOS (light/dark) |
 
-Change the first-paint theme via `defaultTheme` in `site.config.ts`. `macos` additionally honors `defaultMacAppearance` (`"light"` | `"dark"`). Users can switch themes from the menu bar or via `theme <id>` in the terminal; the choice is persisted to `localStorage`.
+Change the first-paint theme via `defaultTheme` in `site.config.ts`. `macos` additionally honors `defaultMacAppearance` (`"light"` | `"dark"`). Users can switch themes from the menu bar or via the terminal; the choice is persisted to `localStorage`.
+
+In the terminal:
+
+```bash
+theme                     # show current theme + available ids
+theme list                # pretty-print ids and labels
+theme win95               # switch theme
+theme macos dark          # switch to macOS + set appearance in one go
+theme appearance light    # update macOS appearance preference only
+```
 
 ## Terminal commands
 
 Default registry (see `lib/shell/registry.ts`):
 
-| Command     | Purpose                              |
-| ----------- | ------------------------------------ |
-| `about`     | Short bio + skills                   |
-| `stack`     | Tech stack summary                   |
-| `theme`     | List / switch themes                 |
-| `clear`     | Clear the screen (also `Ctrl+L`)     |
-| `welcome`   | Reprint the welcome banner           |
-| `help`      | List commands with summaries         |
-| `sl`        | Steam locomotive                     |
-| `coffee`    | `¯\_(ツ)_/¯`                         |
-| `fortune`   | Random fortune line                  |
-| `matrix`    | Short matrix rain                    |
-| `easteregg` | Random hint toward a hidden command  |
+| Command     | Aliases | Purpose                              |
+| ----------- | ------- | ------------------------------------ |
+| `about`     |         | Short bio + skills                   |
+| `stack`     |         | Tech stack summary                   |
+| `theme`     |         | View / switch theme + macOS appearance |
+| `clear`     |         | Clear the screen (also `Ctrl+L`)     |
+| `welcome`   |         | Reprint the welcome banner           |
+| `help`      | `man`   | List commands with summaries (`--hidden` to include hidden) |
+| `sl`        |         | Steam locomotive                     |
+| `chai`      |         | `¯\_(ツ)_/¯`                         |
+| `fortune`   |         | Random fortune line                  |
+| `easteregg` | `egg`   | Random hint toward a hidden command  |
+
+Hidden commands (omitted from `help`, the welcome banner, and tab completion — run `help --hidden` to reveal them):
+
+| Command   | Aliases | Purpose                                       |
+| --------- | ------- | --------------------------------------------- |
+| `matrix`  |         | Matrix rain overlay; `--redpill` / `--bluepill` branches |
+| `konami`  | `kc`    | Manually trigger a Konami effect (`konami --list`, `konami <id>`, `konami --random`) |
 
 Shortcuts: **Tab** completes command names · **↑/↓** history · **Ctrl+L** clears the screen. Multi-line clipboard pastes use only the **first line**.
+
+### Konami effects
+
+The Konami code (↑ ↑ ↓ ↓ ← → ← → B A) picks one of the effects in `lib/konami/effects.ts` at random. The hidden `konami` command exposes the same pool for manual testing:
+
+```bash
+konami --list           # show all effect ids
+konami crt-glitch       # trigger a specific effect
+konami --random         # or just `konami` — roll a random one
+```
+
+Current pool: `confetti`, `matrix-rain`, `lives-up`, `crt-glitch`, `gravity-flip`, `invert`, `boot-rewind`, `cursor-multiplier`, `starfield-warp`, `sprite-walk`.
 
 ## Adding a command
 
@@ -75,9 +104,12 @@ import type { CommandDef } from "@/lib/shell/types";
 
 export const mycommand: CommandDef = {
   name: "mycommand",
+  aliases: ["mc"],
   category: "fun",
   summary: "Does something",
   usage: "mycommand [--help]",
+  // hidden: true,           // omit from help / welcome / completion
+  // args: [["--foo", "--bar"]], // per-position completion candidates
   run(_argv, opts, _ctx) {
     if (opts.help) {
       return { stdout: ["usage: mycommand"], stderr: [], exitCode: 0 };
@@ -89,7 +121,7 @@ export const mycommand: CommandDef = {
 
 2. Register it in `lib/shell/registry.ts` by importing and pushing it into the `cmds` array **before** the `help` line (so `help` sees it).
 
-If your command needs cwd / history / site config, export a factory `(deps: RegistryDeps) => CommandDef` and invoke it in `createShellRegistry`.
+If your command needs cwd / history / site config, export a factory `(deps: RegistryDeps) => CommandDef` and invoke it in `createShellRegistry`. See `CommandDef` in `lib/shell/types.ts` for the full shape (aliases, `hidden`, `args` for tab completion, or a fully custom `complete()`).
 
 ## GitHub Pages
 
@@ -109,11 +141,13 @@ Replace [`public/og.png`](public/og.png) with a **1200×630** PNG. The shipped i
 
 ```
 app/                Next.js App Router (pages, themes, sitemap, 404)
-components/         DesktopEnvironment, AppWindow, Terminal, MenuBar, …
+components/         DesktopEnvironment, AppWindow, Terminal, MenuBar,
+                    KonamiEffects, MatrixRain, …
 content/            ascii-banner.txt, projects/*.md
 lib/
   commands/         Terminal command implementations
   desktop/          Desktop apps + icons
+  konami/           Konami effect ids + event types
   projects/         Markdown loader + types
   shell/            Parser, registry, vfs, tab completion, welcome
   themes/           Theme ids + storage keys

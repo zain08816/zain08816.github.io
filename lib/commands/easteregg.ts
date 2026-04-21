@@ -6,7 +6,7 @@ const EGGS = [
   "Easter egg: `matrix` to follow the white rabbit.",
   "Easter egg: `sl` still rides the rails here.",
   "Easter egg: `fortune` favors the persistent.",
-  "Easter egg: `coffee` is always brewing.",
+  "Easter egg: `chai` is always brewing.",
 ];
 
 export const eastereggCmd: CommandDef = {
