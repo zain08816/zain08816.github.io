@@ -2,11 +2,29 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import type { MouseEvent } from "react";
 import type { SiteConfig } from "@/site.config";
 import type { DesktopAppId } from "@/lib/desktop/apps";
+import { TOOLS_INDEX_PATH } from "@/lib/tools/paths";
 import { useTheme } from "@/components/ThemeProvider";
 import { isThemeId } from "@/lib/themes/types";
 import styles from "./MenuBar.module.css";
+
+function menuAppId(id: string): DesktopAppId | undefined {
+  if (id === "about") return "about";
+  if (id === "tools") return "tools";
+  return undefined;
+}
+
+function isPlainClick(event: MouseEvent): boolean {
+  return (
+    event.button === 0 &&
+    !event.metaKey &&
+    !event.ctrlKey &&
+    !event.shiftKey &&
+    !event.altKey
+  );
+}
 
 function formatClock(d: Date): string {
   const date = new Intl.DateTimeFormat(undefined, {
@@ -105,21 +123,36 @@ export function MenuBar({
         <nav className={styles.desktopNav} aria-label="Main">
           {site.menus.map((menu) => {
             if (menu.href) {
-              const useDesktopAbout =
-                desktopNav?.enabled &&
-                menu.id === "about" &&
-                !menu.external;
+              const menuApp =
+                desktopNav?.enabled && !menu.external
+                  ? menuAppId(menu.id)
+                  : undefined;
 
-              if (useDesktopAbout) {
+              if (menuApp) {
+                const className = `${styles.menuBtn} ${styles.menuLink}`;
                 return (
                   <div key={menu.id} className={styles.menuWrap}>
-                    <button
-                      type="button"
-                      className={`${styles.menuBtn} ${styles.menuLink}`}
-                      onClick={() => desktopNav?.openApp("about")}
-                    >
-                      {menu.label}
-                    </button>
+                    {menuApp === "tools" ? (
+                      <Link
+                        href={menu.href ?? TOOLS_INDEX_PATH}
+                        className={className}
+                        onClick={(event) => {
+                          if (!isPlainClick(event)) return;
+                          event.preventDefault();
+                          desktopNav?.openApp("tools");
+                        }}
+                      >
+                        {menu.label}
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        className={className}
+                        onClick={() => desktopNav?.openApp(menuApp)}
+                      >
+                        {menu.label}
+                      </button>
+                    )}
                   </div>
                 );
               }
@@ -324,18 +357,34 @@ export function MenuBar({
         <div className={styles.mobileSheet}>
           {site.menus.flatMap((m) => {
             if (m.href) {
-              const useDesktopAbout =
-                desktopNav?.enabled &&
-                m.id === "about" &&
-                !m.external;
+              const menuApp =
+                desktopNav?.enabled && !m.external
+                  ? menuAppId(m.id)
+                  : undefined;
 
-              if (useDesktopAbout) {
+              if (menuApp === "tools") {
+                return [
+                  <Link
+                    key={m.id}
+                    href={m.href ?? TOOLS_INDEX_PATH}
+                    onClick={(event) => {
+                      if (!isPlainClick(event)) return;
+                      event.preventDefault();
+                      desktopNav?.openApp("tools");
+                    }}
+                  >
+                    {m.label}
+                  </Link>,
+                ];
+              }
+
+              if (menuApp) {
                 return [
                   <button
                     key={m.id}
                     type="button"
                     className={styles.mobileSheetBtn}
-                    onClick={() => desktopNav?.openApp("about")}
+                    onClick={() => desktopNav?.openApp(menuApp)}
                   >
                     {m.label}
                   </button>,

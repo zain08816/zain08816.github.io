@@ -381,6 +381,81 @@ function System7AboutGlyph(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+function MacosToolsGlyph(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 32 32" role="img" aria-hidden="true" {...props}>
+      <rect x="3" y="3" width="26" height="26" rx="6" fill="#2c6bed" />
+      <path
+        d="M13.2 9.2c-2 .6-3.2 1.8-3.2 3.6 0 1.4.8 2.3 2.1 2.7-1.1.4-1.8 1.3-1.8 2.6 0 2 1.4 3.2 3.6 3.6"
+        fill="none"
+        stroke="#ffffff"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+      <path
+        d="M18.8 9.2c2 .6 3.2 1.8 3.2 3.6 0 1.4-.8 2.3-2.1 2.7 1.1.4 1.8 1.3 1.8 2.6 0 2-1.4 3.2-3.6 3.6"
+        fill="none"
+        stroke="#ffffff"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+/** Win95 toolbox: beveled window with a pair of braces. */
+function Win95ToolsGlyph(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      shapeRendering="crispEdges"
+      role="img"
+      aria-hidden="true"
+      {...props}
+    >
+      <rect x="4" y="4" width="24" height="24" fill="#c0c0c0" />
+      <path d="M4 4h24v1H4z M4 4h1v23H4z" fill="#ffffff" />
+      <path d="M4 27h24v1H4z M27 4h1v24h-1z" fill="#000000" />
+      <rect x="6" y="6" width="20" height="4" fill="#000080" />
+      <rect x="8" y="13" width="2" height="2" fill="#000000" />
+      <rect x="10" y="11" width="2" height="2" fill="#000000" />
+      <rect x="10" y="15" width="2" height="2" fill="#000000" />
+      <rect x="12" y="13" width="2" height="2" fill="#000000" />
+      <rect x="18" y="13" width="2" height="2" fill="#000000" />
+      <rect x="20" y="11" width="2" height="2" fill="#000000" />
+      <rect x="20" y="15" width="2" height="2" fill="#000000" />
+      <rect x="22" y="13" width="2" height="2" fill="#000000" />
+    </svg>
+  );
+}
+
+function System7ToolsGlyph(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      shapeRendering="crispEdges"
+      role="img"
+      aria-hidden="true"
+      {...props}
+    >
+      <rect x="5" y="5" width="22" height="22" fill="#ffffff" />
+      <rect x="5" y="5" width="22" height="1" fill="#000000" />
+      <rect x="5" y="5" width="1" height="22" fill="#000000" />
+      <rect x="26" y="5" width="1" height="22" fill="#000000" />
+      <rect x="5" y="26" width="22" height="1" fill="#000000" />
+      <rect x="7" y="7" width="18" height="3" fill="#000000" />
+      <rect x="9" y="14" width="2" height="2" fill="#000000" />
+      <rect x="11" y="12" width="2" height="2" fill="#000000" />
+      <rect x="11" y="16" width="2" height="2" fill="#000000" />
+      <rect x="13" y="14" width="2" height="2" fill="#000000" />
+      <rect x="17" y="14" width="2" height="2" fill="#000000" />
+      <rect x="19" y="12" width="2" height="2" fill="#000000" />
+      <rect x="19" y="16" width="2" height="2" fill="#000000" />
+      <rect x="21" y="14" width="2" height="2" fill="#000000" />
+    </svg>
+  );
+}
+
 /**
  * Add new desktop shortcuts here. Order = top-to-bottom in the icon column.
  * To add a new app shortcut: register the app in `lib/desktop/apps.ts`,
@@ -415,6 +490,16 @@ export const DESKTOP_ICONS: DesktopIconDef[] = [
     glyphByTheme: {
       win95: Win95AboutGlyph,
       system7: System7AboutGlyph,
+    },
+  },
+  {
+    id: "tools",
+    appId: "tools",
+    label: "Tools",
+    Glyph: MacosToolsGlyph,
+    glyphByTheme: {
+      win95: Win95ToolsGlyph,
+      system7: System7ToolsGlyph,
     },
   },
 ];

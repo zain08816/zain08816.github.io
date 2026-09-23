@@ -33,6 +33,7 @@ export default async function Home() {
           <p>{siteConfig.tagline}</p>
           <p>
             <Link href="/projects/">Projects</Link> ·{" "}
+            <Link href="/tools/">Tools</Link> ·{" "}
             <Link href="/about/">About</Link> ·{" "}
             <a href={siteConfig.links.github}>GitHub</a> ·{" "}
             <a href={siteConfig.links.linkedin}>LinkedIn</a>

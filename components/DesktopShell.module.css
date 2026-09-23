@@ -52,6 +52,17 @@
   flex-direction: column;
 }
 
+.winTools {
+  position: absolute;
+  left: min(6vw, 3rem);
+  top: 0.35rem;
+  width: min(62rem, calc(100% - 1.5rem));
+  height: min(82vh, 700px);
+  max-height: calc(100% - 0.6rem);
+  display: flex;
+  flex-direction: column;
+}
+
 /* Padded “almost full screen” — desktop wallpaper stays visible */
 .winMaximized {
   left: min(2rem, 5vw) !important;
@@ -80,6 +91,11 @@
 
 .winMinimized.winProjects {
   right: auto !important;
+}
+
+.winMinimized.winTools {
+  right: auto !important;
+  height: auto !important;
 }
 
 .appWindowFill {
@@ -117,6 +133,14 @@
     transform: none;
     width: auto;
     max-height: min(50vh, 440px);
+  }
+
+  .winTools {
+    left: 0.5rem;
+    right: 0.5rem;
+    top: 0.25rem;
+    width: auto;
+    height: min(78vh, 640px);
   }
 
   .winMaximized {

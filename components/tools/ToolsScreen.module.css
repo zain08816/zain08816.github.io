@@ -1,0 +1,98 @@
+.page {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 1.5rem min(4vw, 2rem) 3rem;
+  font-family: var(--font-ui);
+  line-height: 1.55;
+  color: var(--standalone-fg);
+}
+
+.h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.4rem;
+}
+
+.lead {
+  margin: 0;
+  max-width: 46rem;
+  color: var(--standalone-muted);
+}
+
+.note {
+  margin: 0.45rem 0 0;
+  max-width: 46rem;
+  color: var(--standalone-muted);
+  font-size: 0.92rem;
+}
+
+.note a,
+.list a {
+  color: var(--standalone-accent);
+}
+
+.frame {
+  height: min(78vh, 720px);
+  min-height: 28rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1.25rem 0 2rem;
+  overflow: hidden;
+  border: var(--window-frame-border);
+  box-shadow: var(--window-shadow);
+  background: var(--app-panel-bg);
+  color: var(--app-panel-fg);
+}
+
+.section {
+  margin-top: 0.5rem;
+}
+
+.h2 {
+  font-size: 1.15rem;
+  margin: 0 0 0.6rem;
+}
+
+.h3 {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 1.1rem 0 0.35rem;
+  color: var(--standalone-muted);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  margin: 0 0 0.45rem;
+}
+
+.blurb {
+  color: var(--standalone-muted);
+}
+
+.sample {
+  margin: 0;
+  max-width: 46rem;
+  overflow: auto;
+  padding: 0.75rem 1rem;
+  background: var(--standalone-pre-bg);
+  border: 1px solid var(--standalone-pre-border);
+  color: var(--standalone-fg);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 720px) {
+  .frame {
+    height: auto;
+    min-height: 36rem;
+  }
+}

@@ -17,6 +17,7 @@ import { Terminal } from "./Terminal";
 import { AboutContent } from "./about/AboutContent";
 import { ProjectsListContent } from "./projects/ProjectsListContent";
 import { DesktopIcons } from "./DesktopIcons";
+import { ToolsApp } from "./tools/ToolsApp";
 import styles from "./DesktopShell.module.css";
 
 function minimizedSlotLeft(
@@ -73,11 +74,13 @@ export function DesktopEnvironment({
     terminal: "normal",
     projects: "normal",
     about: "normal",
+    tools: "normal",
   });
   const [zMap, setZMap] = useState<Record<DesktopAppId, number>>({
     terminal: 100,
     projects: 90,
     about: 91,
+    tools: 92,
   });
   const [windowOffset, setWindowOffset] = useState<
     Record<DesktopAppId, { x: number; y: number }>
@@ -85,6 +88,7 @@ export function DesktopEnvironment({
     terminal: { x: 0, y: 0 },
     projects: { x: 0, y: 0 },
     about: { x: 0, y: 0 },
+    tools: { x: 0, y: 0 },
   });
   const [aboutLayoutWide, setAboutLayoutWide] = useState(true);
 
@@ -196,6 +200,7 @@ export function DesktopEnvironment({
       terminal: site.menuAppName,
       projects: "Projects",
       about: "About",
+      tools: "Tools",
     };
     if (open.size === 0) {
       return site.hostname;
@@ -332,6 +337,35 @@ export function DesktopEnvironment({
                 <div className={styles.panelPad}>
                   <AboutContent site={site} />
                 </div>
+              </AppWindow>
+            </div>
+          )}
+
+          {open.has("tools") && (
+            <div
+              className={winShellClass(styles.winTools, "tools")}
+              style={{
+                zIndex: winZ("tools"),
+                left: minimizedSlotLeft("tools", open, layoutMode),
+                ...dragStyle("tools", windowOffset.tools, aboutLayoutWide),
+              }}
+              onMouseDown={() => shellMouseDown("tools")}
+            >
+              <AppWindow
+                className={styles.appWindowFill}
+                title="Tools"
+                titleId="win-tools-title"
+                theme={theme}
+                bodyVariant="panel"
+                layoutMode={layoutMode.tools}
+                dragEnabled={layoutMode.tools === "normal"}
+                onDrag={(dx, dy) => moveWindow("tools", dx, dy)}
+                onClose={() => closeApp("tools")}
+                onFocusWindow={() => bringToFront("tools")}
+                onMinimize={() => minimizeApp("tools")}
+                onToggleMaximize={() => toggleMaximize("tools")}
+              >
+                <ToolsApp />
               </AppWindow>
             </div>
           )}

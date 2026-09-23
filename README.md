@@ -1,10 +1,11 @@
 # zain08816.github.io — desktop portfolio
 
-A static [Next.js](https://nextjs.org/) personal site styled as a tiny desktop environment. Draggable windows for a **Terminal**, **Projects**, and **About**, a macOS-style menu bar, three swappable chrome themes, and Markdown-powered project pages. Deploys to [GitHub Pages](https://pages.github.com/) via `.github/workflows/deploy.yml`.
+A static [Next.js](https://nextjs.org/) personal site styled as a tiny desktop environment. Draggable windows for a **Terminal**, **Projects**, **About**, and **Tools**, a macOS-style menu bar, three swappable chrome themes, and Markdown-powered project pages. Deploys to [GitHub Pages](https://pages.github.com/) via `.github/workflows/deploy.yml`.
 
 ## Highlights
 
 - **Desktop shell** — open/close/minimize/maximize, drag windows, focus stacking (`components/DesktopEnvironment.tsx`).
+- **Tools** — in-browser JSON, Base64, URL, HTML, JWT, hash, time, and CSV utilities (`components/tools/`, `lib/tools/`). Nothing leaves the browser. Also published at `/tools/` and `/tools/[id]/` for direct links and search.
 - **Themes** — Windows 95, Mac System 7, macOS (light/dark). Picked at build time via `siteConfig.defaultTheme` and switchable at runtime through the `theme` command or menu bar.
 - **Terminal** — history, tab completion, piping/chaining handled in `lib/shell/`. Commands live in `lib/commands/` and are registered in `lib/shell/registry.ts`. Commands can be marked `hidden` to keep them out of `help` / welcome / tab completion until surfaced with `help --hidden`.
 - **Markdown projects** — one file per project in `content/projects/*.md` (frontmatter + body). Slugs drive `/projects/[slug]/`.
@@ -142,11 +143,12 @@ Replace [`public/og.png`](public/og.png) with a **1200×630** PNG. The shipped i
 ```
 app/                Next.js App Router (pages, themes, sitemap, 404)
 components/         DesktopEnvironment, AppWindow, Terminal, MenuBar,
-                    KonamiEffects, MatrixRain, …
+                    tools/, KonamiEffects, MatrixRain, …
 content/            ascii-banner.txt, projects/*.md
 lib/
   commands/         Terminal command implementations
   desktop/          Desktop apps + icons
+  tools/            In-browser developer tools
   konami/           Konami effect ids + event types
   projects/         Markdown loader + types
   shell/            Parser, registry, vfs, tab completion, welcome

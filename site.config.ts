@@ -113,6 +113,12 @@ export const siteConfig: SiteConfig = {
       ],
     },
     {
+      id: "tools",
+      label: "Tools",
+      href: "/tools/",
+      items: [],
+    },
+    {
       id: "about",
       label: "About",
       href: "/about/",
@@ -142,6 +148,6 @@ export const siteConfig: SiteConfig = {
   seo: {
     title: "Hi, I'm Zain",
     description:
-      "Zain Ali — Software Engineer. An interactive desktop portfolio with a terminal, themed windows, and a few easter eggs.",
+      "Zain Ali — Software Engineer. An interactive desktop portfolio with a terminal, themed windows, in-browser developer tools, and a few easter eggs.",
   },
 };
