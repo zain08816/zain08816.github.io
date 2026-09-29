@@ -4,6 +4,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import type { SiteConfig } from "@/site.config";
 import type { Project } from "@/lib/projects/types";
+import type { Essay } from "@/lib/essays/types";
+import type { Inspiration } from "@/lib/inspirations/types";
 import type { WelcomeSegment } from "@/lib/shell/welcome";
 import {
   DESKTOP_APPS,
@@ -16,6 +18,8 @@ import { AppWindow } from "./AppWindow";
 import { Terminal } from "./Terminal";
 import { AboutContent } from "./about/AboutContent";
 import { ProjectsListContent } from "./projects/ProjectsListContent";
+import { EssaysListContent } from "./essays/EssaysListContent";
+import { InspirationsListContent } from "./inspirations/InspirationsListContent";
 import { DesktopIcons } from "./DesktopIcons";
 import { ToolsApp } from "./tools/ToolsApp";
 import styles from "./DesktopShell.module.css";
@@ -53,11 +57,15 @@ function dragStyle(
 export function DesktopEnvironment({
   site,
   projects,
+  essays,
+  inspirations,
   welcomeSegments,
   welcomeCommandColumnWidth,
 }: {
   site: SiteConfig;
   projects: Project[];
+  essays: Essay[];
+  inspirations: Inspiration[];
   welcomeSegments: WelcomeSegment[];
   welcomeCommandColumnWidth: number;
 }) {
@@ -73,12 +81,16 @@ export function DesktopEnvironment({
   >({
     terminal: "normal",
     projects: "normal",
+    essays: "normal",
+    inspirations: "normal",
     about: "normal",
     tools: "normal",
   });
   const [zMap, setZMap] = useState<Record<DesktopAppId, number>>({
     terminal: 100,
     projects: 90,
+    essays: 89,
+    inspirations: 88,
     about: 91,
     tools: 92,
   });
@@ -87,6 +99,8 @@ export function DesktopEnvironment({
   >({
     terminal: { x: 0, y: 0 },
     projects: { x: 0, y: 0 },
+    essays: { x: 0, y: 0 },
+    inspirations: { x: 0, y: 0 },
     about: { x: 0, y: 0 },
     tools: { x: 0, y: 0 },
   });
@@ -199,6 +213,8 @@ export function DesktopEnvironment({
     const labels: Record<DesktopAppId, string> = {
       terminal: site.menuAppName,
       projects: "Projects",
+      essays: "Essays",
+      inspirations: "Inspirations",
       about: "About",
       tools: "Tools",
     };
@@ -305,6 +321,75 @@ export function DesktopEnvironment({
               >
                 <div className={styles.panelPad}>
                   <ProjectsListContent projects={projects} showNav={false} />
+                </div>
+              </AppWindow>
+            </div>
+          )}
+
+          {open.has("essays") && (
+            <div
+              className={winShellClass(styles.winEssays, "essays")}
+              style={{
+                zIndex: winZ("essays"),
+                left: minimizedSlotLeft("essays", open, layoutMode),
+                ...dragStyle("essays", windowOffset.essays, aboutLayoutWide),
+              }}
+              onMouseDown={() => shellMouseDown("essays")}
+            >
+              <AppWindow
+                className={styles.appWindowFill}
+                title="Essays"
+                titleId="win-essays-title"
+                theme={theme}
+                bodyVariant="panel"
+                layoutMode={layoutMode.essays}
+                dragEnabled={layoutMode.essays === "normal"}
+                onDrag={(dx, dy) => moveWindow("essays", dx, dy)}
+                onClose={() => closeApp("essays")}
+                onFocusWindow={() => bringToFront("essays")}
+                onMinimize={() => minimizeApp("essays")}
+                onToggleMaximize={() => toggleMaximize("essays")}
+              >
+                <div className={styles.panelPad}>
+                  <EssaysListContent essays={essays} showNav={false} />
+                </div>
+              </AppWindow>
+            </div>
+          )}
+
+          {open.has("inspirations") && (
+            <div
+              className={winShellClass(styles.winInspirations, "inspirations")}
+              style={{
+                zIndex: winZ("inspirations"),
+                left: minimizedSlotLeft("inspirations", open, layoutMode),
+                ...dragStyle(
+                  "inspirations",
+                  windowOffset.inspirations,
+                  aboutLayoutWide
+                ),
+              }}
+              onMouseDown={() => shellMouseDown("inspirations")}
+            >
+              <AppWindow
+                className={styles.appWindowFill}
+                title="Inspirations"
+                titleId="win-inspirations-title"
+                theme={theme}
+                bodyVariant="panel"
+                layoutMode={layoutMode.inspirations}
+                dragEnabled={layoutMode.inspirations === "normal"}
+                onDrag={(dx, dy) => moveWindow("inspirations", dx, dy)}
+                onClose={() => closeApp("inspirations")}
+                onFocusWindow={() => bringToFront("inspirations")}
+                onMinimize={() => minimizeApp("inspirations")}
+                onToggleMaximize={() => toggleMaximize("inspirations")}
+              >
+                <div className={styles.panelPad}>
+                  <InspirationsListContent
+                    inspirations={inspirations}
+                    showNav={false}
+                  />
                 </div>
               </AppWindow>
             </div>

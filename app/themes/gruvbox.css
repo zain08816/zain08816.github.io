@@ -1,0 +1,91 @@
+/*
+ * Light Gruvbox theme — official palette from morhetz/gruvbox (colors/gruvbox.vim).
+ * Warm parchment desktop, yellow title bars, cream chrome.
+ */
+[data-theme="gruvbox"] {
+  /* Palette: bg0 #fbf1c7, bg1 #ebdbb2, bg2 #d5c4a1, bg3 #bdae93,
+     bg4 #a89984, fg0 #282828, fg1 #3c3836, fg2 #504945, fg3 #665c54,
+     fg4 #7c6f64, yellow #d79921 / #b57614, orange #af3a03 / #d65d0e */
+  --desktop-bg: #d5c4a1;
+  --desktop-gradient:
+    radial-gradient(circle at 18% 12%, #ebdbb2 0, transparent 38%),
+    radial-gradient(circle at 88% 80%, #f2e5bc 0, transparent 34%);
+
+  --font-ui: Tahoma, "MS Sans Serif", "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), "Courier New", ui-monospace, monospace;
+
+  --terminal-bg: #fbf1c7;
+  --terminal-fg: #3c3836;
+  --terminal-muted: #665c54;
+  --terminal-accent: #af3a03;
+  --terminal-err: #9d0006;
+  --terminal-border: #7c6f64;
+
+  --window-shadow: 4px 4px 0 #665c54;
+  --window-radius: 0;
+  --window-frame-border: 2px solid #665c54;
+  --window-outer-shadow:
+    4px 4px 0 #665c54,
+    inset 1px 1px 0 #fbf1c7,
+    inset -1px -1px 0 #7c6f64;
+  --window-frame-bg: #ebdbb2;
+  --window-frame-backdrop: none;
+  --window-body-bg: var(--terminal-bg);
+  --window-body-min-height: 14rem;
+  --window-raised-highlight: #fbf1c7;
+  --window-raised-shadow: #7c6f64;
+  --window-raised-face: #f2e5bc;
+
+  --title-bar-bg: #d79921;
+  --title-bar-backdrop: none;
+  --title-bar-fg: #3c3836;
+  --title-bar-font-weight: 700;
+  --title-bar-letter-spacing: 0;
+  --title-bar-border-bottom: none;
+  --title-padding-start: 0;
+  --title-text-align: center;
+
+  --menu-bar-bg: #ebdbb2;
+  --menu-bar-bg-solid: #ebdbb2;
+  --menu-bar-backdrop: none;
+  --menu-bar-border-bottom: 2px solid #665c54;
+  --menu-bar-fg: #3c3836;
+  --menu-bar-height: 28px;
+  --menu-bar-font-size: 13px;
+  --menu-btn-radius: 0;
+  --menu-btn-hover-bg: #d5c4a1;
+  --menu-btn-open-bg: #bdae93;
+  --menu-icon-hover-bg: #d5c4a1;
+  --menu-dropdown-bg: #ebdbb2;
+  --menu-dropdown-backdrop: none;
+  --menu-dropdown-radius: 0;
+  --menu-dropdown-border: 2px solid #665c54;
+  --menu-dropdown-shadow: 4px 4px 0 rgba(60, 56, 54, 0.25);
+  --menu-item-hover-bg: #b57614;
+  --menu-item-hover-fg: #fbf1c7;
+  --menu-focus-ring: 2px dotted #3c3836;
+  --menu-logo-opacity: 1;
+
+  --app-panel-bg: #fbf1c7;
+  --app-panel-fg: #3c3836;
+  --app-panel-muted: #665c54;
+  --app-panel-accent: #af3a03;
+  --app-panel-border: #7c6f64;
+  --app-panel-chip-bg: #f2e5bc;
+  --app-panel-chip-border: #bdae93;
+
+  --desktop-icon-fg: #282828;
+  --desktop-icon-hover-bg: rgba(251, 241, 199, 0.55);
+  --desktop-icon-hover-border: rgba(124, 111, 100, 0.55);
+  --desktop-icon-active-bg: rgba(215, 153, 33, 0.35);
+  --desktop-icon-focus: #af3a03;
+
+  --standalone-fg: #282828;
+  --standalone-muted: #504945;
+  --standalone-accent: #af3a03;
+  --standalone-border: rgba(124, 111, 100, 0.55);
+  --standalone-chip-bg: rgba(251, 241, 199, 0.65);
+  --standalone-chip-border: rgba(124, 111, 100, 0.45);
+  --standalone-pre-bg: rgba(242, 229, 188, 0.85);
+  --standalone-pre-border: rgba(124, 111, 100, 0.4);
+}

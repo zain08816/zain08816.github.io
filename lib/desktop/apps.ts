@@ -1,8 +1,16 @@
-export type DesktopAppId = "terminal" | "projects" | "about" | "tools";
+export type DesktopAppId =
+  | "terminal"
+  | "projects"
+  | "essays"
+  | "inspirations"
+  | "about"
+  | "tools";
 
 export const DESKTOP_APPS: DesktopAppId[] = [
   "terminal",
   "projects",
+  "essays",
+  "inspirations",
   "about",
   "tools",
 ];

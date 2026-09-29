@@ -13,6 +13,8 @@ import styles from "./MenuBar.module.css";
 function menuAppId(id: string): DesktopAppId | undefined {
   if (id === "about") return "about";
   if (id === "tools") return "tools";
+  if (id === "essays") return "essays";
+  if (id === "inspirations") return "inspirations";
   return undefined;
 }
 
@@ -99,19 +101,35 @@ export function MenuBar({
   ): DesktopAppId | undefined {
     if (!href || desktopNav?.enabled !== true) return undefined;
     if (href === "/") return "terminal";
-    if (
-      href === "/projects/" ||
-      href.endsWith("/projects/")
-    )
-      return "projects";
+    if (href === "/projects/" || href.endsWith("/projects/")) return "projects";
+    if (href === "/essays/" || href.endsWith("/essays/")) return "essays";
+    if (href === "/inspirations/" || href.endsWith("/inspirations/"))
+      return "inspirations";
     return undefined;
+  }
+
+  function menuLogoGlyph(themeId: typeof theme): string {
+    switch (themeId) {
+      case "win95":
+        return "◇";
+      case "system7":
+        return "▤";
+      case "gruvbox":
+        return "◆";
+      case "macos":
+        return "⌘";
+      default: {
+        const _exhaustive: never = themeId;
+        return _exhaustive;
+      }
+    }
   }
 
   return (
     <header className={styles.bar} role="banner" data-menu-theme={theme}>
       <div className={styles.left}>
         <span className={styles.logo} aria-hidden="true">
-          {theme === "win95" ? "◇" : theme === "system7" ? "▤" : "⌘"}
+          {menuLogoGlyph(theme)}
         </span>
         <span
           className={styles.app}
@@ -206,7 +224,10 @@ export function MenuBar({
                   >
                     {menu.items.map((item) => {
                       const desktopId =
-                        menu.id === "projects" && desktopNav?.enabled
+                        (menu.id === "projects" ||
+                          menu.id === "essays" ||
+                          menu.id === "inspirations") &&
+                        desktopNav?.enabled
                           ? desktopProjectAction(item.href)
                           : undefined;
 
@@ -412,7 +433,10 @@ export function MenuBar({
               .filter((i) => i.href)
               .map((item) => {
                 const desktopId =
-                  m.id === "projects" && desktopNav?.enabled
+                  (m.id === "projects" ||
+                    m.id === "essays" ||
+                    m.id === "inspirations") &&
+                  desktopNav?.enabled
                     ? desktopProjectAction(item.href)
                     : undefined;
 

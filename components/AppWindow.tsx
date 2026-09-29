@@ -40,6 +40,7 @@ export function AppWindow({
 }) {
   const isMac = theme === "macos";
   const isSystem7 = theme === "system7";
+  const isClassicChrome = theme === "win95" || theme === "gruvbox";
   const minimized = layoutMode === "minimized";
   const maximized = layoutMode === "maximized";
   const draggingRef = useRef(false);
@@ -107,7 +108,7 @@ export function AppWindow({
       data-layout={layoutMode}
     >
       <div
-        className={`${styles.titleBar} ${theme === "win95" ? styles.titleBarWin95 : ""} ${isSystem7 ? styles.titleBarSystem7 : ""} ${dragEnabled ? styles.titleBarDraggable : ""} ${draggingUi ? styles.titleBarDragging : ""}`}
+        className={`${styles.titleBar} ${isClassicChrome ? styles.titleBarWin95 : ""} ${isSystem7 ? styles.titleBarSystem7 : ""} ${dragEnabled ? styles.titleBarDraggable : ""} ${draggingUi ? styles.titleBarDragging : ""}`}
         onPointerDown={handleTitlePointerDown}
         onPointerMove={handleTitlePointerMove}
         onPointerUp={handleTitlePointerUp}

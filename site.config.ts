@@ -113,6 +113,18 @@ export const siteConfig: SiteConfig = {
       ],
     },
     {
+      id: "essays",
+      label: "Essays",
+      href: "/essays/",
+      items: [],
+    },
+    {
+      id: "inspirations",
+      label: "Inspirations",
+      href: "/inspirations/",
+      items: [],
+    },
+    {
       id: "tools",
       label: "Tools",
       href: "/tools/",
