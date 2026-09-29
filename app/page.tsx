@@ -2,12 +2,18 @@ import Link from "next/link";
 import { DesktopShell } from "@/components/DesktopShell";
 import { siteConfig } from "@/site.config";
 import { getAllProjects } from "@/lib/projects/loadProjects";
+import { getAllEssays } from "@/lib/essays/loadEssays";
+import { getAllInspirations } from "@/lib/inspirations/loadInspirations";
 import { commandNameColumnWidth } from "@/lib/shell/formatCommandList";
 import { createShellRegistry } from "@/lib/shell/registry";
 import { buildWelcomeSegments } from "@/lib/shell/welcome";
 
 export default async function Home() {
-  const projects = await getAllProjects();
+  const [projects, essays, inspirations] = await Promise.all([
+    getAllProjects(),
+    getAllEssays(),
+    getAllInspirations(),
+  ]);
   const registry = createShellRegistry({
     site: siteConfig,
     projects,
@@ -33,6 +39,8 @@ export default async function Home() {
           <p>{siteConfig.tagline}</p>
           <p>
             <Link href="/projects/">Projects</Link> ·{" "}
+            <Link href="/essays/">Essays</Link> ·{" "}
+            <Link href="/inspirations/">Inspirations</Link> ·{" "}
             <Link href="/tools/">Tools</Link> ·{" "}
             <Link href="/about/">About</Link> ·{" "}
             <a href={siteConfig.links.github}>GitHub</a> ·{" "}
@@ -43,6 +51,8 @@ export default async function Home() {
       <DesktopShell
         site={siteConfig}
         projects={projects}
+        essays={essays}
+        inspirations={inspirations}
         welcomeSegments={welcomeSegments}
         welcomeCommandColumnWidth={welcomeCommandColumnWidth}
       />

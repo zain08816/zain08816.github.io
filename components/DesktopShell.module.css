@@ -41,6 +41,26 @@
   flex-direction: column;
 }
 
+.winEssays {
+  position: absolute;
+  right: min(4vw, 2rem);
+  top: 1.25rem;
+  width: min(26rem, calc(100vw - 2rem));
+  max-height: min(72vh, 540px);
+  display: flex;
+  flex-direction: column;
+}
+
+.winInspirations {
+  position: absolute;
+  right: min(5vw, 2.75rem);
+  top: 2rem;
+  width: min(28rem, calc(100vw - 2rem));
+  max-height: min(72vh, 540px);
+  display: flex;
+  flex-direction: column;
+}
+
 .winAbout {
   position: absolute;
   left: 50%;
@@ -93,6 +113,14 @@
   right: auto !important;
 }
 
+.winMinimized.winEssays {
+  right: auto !important;
+}
+
+.winMinimized.winInspirations {
+  right: auto !important;
+}
+
 .winMinimized.winTools {
   right: auto !important;
   height: auto !important;
@@ -120,6 +148,15 @@
   }
 
   .winProjects {
+    left: 0.5rem;
+    right: 0.5rem;
+    top: 0.25rem;
+    width: auto;
+    max-height: min(45vh, 420px);
+  }
+
+  .winEssays,
+  .winInspirations {
     left: 0.5rem;
     right: 0.5rem;
     top: 0.25rem;

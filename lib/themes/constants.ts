@@ -10,4 +10,5 @@ export const THEME_OPTIONS: { id: ThemeId; label: string }[] = [
   { id: "win95", label: "Windows 95" },
   { id: "system7", label: "Mac System 7" },
   { id: "macos", label: "macOS" },
+  { id: "gruvbox", label: "Gruvbox" },
 ];

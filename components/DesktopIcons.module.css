@@ -137,6 +137,30 @@
   text-shadow: none;
 }
 
+/* Gruvbox: dark labels on warm parchment wallpaper */
+:global([data-theme="gruvbox"]) .icon {
+  border-radius: 0;
+  color: #282828;
+}
+
+:global([data-theme="gruvbox"]) .icon:hover {
+  background: rgba(251, 241, 199, 0.55);
+  border-color: rgba(124, 111, 100, 0.55);
+}
+
+:global([data-theme="gruvbox"]) .icon:focus-visible {
+  outline: 2px dotted #af3a03;
+  outline-offset: 1px;
+}
+
+:global([data-theme="gruvbox"]) .glyph {
+  filter: none;
+}
+
+:global([data-theme="gruvbox"]) .label {
+  text-shadow: 0 1px 0 rgba(251, 241, 199, 0.7);
+}
+
 @media (max-width: 720px) {
   .row {
     top: 0.35rem;

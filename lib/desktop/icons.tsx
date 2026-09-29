@@ -456,6 +456,209 @@ function System7ToolsGlyph(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+/** macOS "Essays": document with folded corner and text lines. */
+function MacosEssaysGlyph(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 32 32" role="img" aria-hidden="true" {...props}>
+      <defs>
+        <linearGradient id="macEssayPaper" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset="1" stopColor="#e8ecf2" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M8 4.5h11.5L24.5 9.5V27a1.5 1.5 0 0 1-1.5 1.5H8A1.5 1.5 0 0 1 6.5 27V6A1.5 1.5 0 0 1 8 4.5z"
+        fill="url(#macEssayPaper)"
+        stroke="rgba(0,0,0,0.22)"
+        strokeWidth="0.6"
+      />
+      <path
+        d="M19.5 4.5V9h4.5"
+        fill="none"
+        stroke="rgba(0,0,0,0.2)"
+        strokeWidth="0.6"
+      />
+      <path d="M19.5 4.5L24 9h-3a1.5 1.5 0 0 1-1.5-1.5z" fill="#cfd6e0" />
+      <rect x="10" y="13" width="12" height="1.4" rx="0.5" fill="#8a909a" />
+      <rect x="10" y="16.5" width="10" height="1.2" rx="0.5" fill="#b8bdc6" />
+      <rect x="10" y="19.5" width="11" height="1.2" rx="0.5" fill="#b8bdc6" />
+      <rect x="10" y="22.5" width="8" height="1.2" rx="0.5" fill="#b8bdc6" />
+    </svg>
+  );
+}
+
+function Win95EssaysGlyph(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      shapeRendering="crispEdges"
+      role="img"
+      aria-hidden="true"
+      {...props}
+    >
+      <rect x="7" y="4" width="16" height="24" fill="#ffffff" />
+      <rect x="7" y="4" width="16" height="1" fill="#000000" />
+      <rect x="7" y="4" width="1" height="24" fill="#000000" />
+      <rect x="22" y="4" width="1" height="24" fill="#000000" />
+      <rect x="7" y="27" width="16" height="1" fill="#000000" />
+      <rect x="8" y="5" width="14" height="1" fill="#c0c0c0" />
+      <rect x="10" y="10" width="10" height="1" fill="#000080" />
+      <rect x="10" y="13" width="10" height="1" fill="#808080" />
+      <rect x="10" y="16" width="8" height="1" fill="#808080" />
+      <rect x="10" y="19" width="9" height="1" fill="#808080" />
+      <rect x="10" y="22" width="7" height="1" fill="#808080" />
+    </svg>
+  );
+}
+
+function System7EssaysGlyph(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      shapeRendering="crispEdges"
+      role="img"
+      aria-hidden="true"
+      {...props}
+    >
+      <rect x="8" y="5" width="16" height="22" fill="#ffffff" />
+      <rect x="8" y="5" width="16" height="1" fill="#000000" />
+      <rect x="8" y="5" width="1" height="22" fill="#000000" />
+      <rect x="23" y="5" width="1" height="22" fill="#000000" />
+      <rect x="8" y="26" width="16" height="1" fill="#000000" />
+      <rect x="11" y="10" width="10" height="1" fill="#000000" />
+      <rect x="11" y="13" width="10" height="1" fill="#4f4f4f" />
+      <rect x="11" y="16" width="8" height="1" fill="#4f4f4f" />
+      <rect x="11" y="19" width="9" height="1" fill="#4f4f4f" />
+    </svg>
+  );
+}
+
+function GruvboxEssaysGlyph(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      shapeRendering="crispEdges"
+      role="img"
+      aria-hidden="true"
+      {...props}
+    >
+      <rect x="7" y="4" width="16" height="24" fill="#fbf1c7" />
+      <rect x="7" y="4" width="16" height="1" fill="#7c6f64" />
+      <rect x="7" y="4" width="1" height="24" fill="#7c6f64" />
+      <rect x="22" y="4" width="1" height="24" fill="#7c6f64" />
+      <rect x="7" y="27" width="16" height="1" fill="#7c6f64" />
+      <rect x="10" y="10" width="10" height="1" fill="#af3a03" />
+      <rect x="10" y="13" width="10" height="1" fill="#665c54" />
+      <rect x="10" y="16" width="8" height="1" fill="#665c54" />
+      <rect x="10" y="19" width="9" height="1" fill="#665c54" />
+      <rect x="10" y="22" width="7" height="1" fill="#665c54" />
+    </svg>
+  );
+}
+
+/** macOS "Inspirations": bookmark card with accent tip. */
+function MacosInspirationsGlyph(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 32 32" role="img" aria-hidden="true" {...props}>
+      <defs>
+        <linearGradient id="macInspCard" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#ffe8a3" />
+          <stop offset="1" stopColor="#f0c14d" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M9 4.5h14a1.5 1.5 0 0 1 1.5 1.5v20.2l-4.4-3.2-3.6 2.6-3.6-2.6-4.4 3.2V6A1.5 1.5 0 0 1 9 4.5z"
+        fill="url(#macInspCard)"
+        stroke="rgba(0,0,0,0.22)"
+        strokeWidth="0.6"
+      />
+      <rect x="12" y="10" width="8" height="1.3" rx="0.5" fill="#8a6a20" />
+      <rect x="12" y="13.5" width="6" height="1.1" rx="0.5" fill="#b08a35" />
+    </svg>
+  );
+}
+
+function Win95InspirationsGlyph(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      shapeRendering="crispEdges"
+      role="img"
+      aria-hidden="true"
+      {...props}
+    >
+      <rect x="9" y="4" width="14" height="22" fill="#ffff99" />
+      <rect x="9" y="4" width="14" height="1" fill="#000000" />
+      <rect x="9" y="4" width="1" height="22" fill="#000000" />
+      <rect x="22" y="4" width="1" height="22" fill="#000000" />
+      <rect x="9" y="26" width="5" height="1" fill="#000000" />
+      <rect x="18" y="26" width="5" height="1" fill="#000000" />
+      <rect x="13" y="24" width="1" height="3" fill="#ffff99" />
+      <rect x="14" y="23" width="4" height="4" fill="#c0c0c0" />
+      <rect x="14" y="23" width="4" height="1" fill="#000000" />
+      <rect x="14" y="26" width="4" height="1" fill="#000000" />
+      <rect x="14" y="23" width="1" height="4" fill="#000000" />
+      <rect x="17" y="23" width="1" height="4" fill="#000000" />
+      <rect x="12" y="9" width="8" height="1" fill="#000080" />
+      <rect x="12" y="12" width="6" height="1" fill="#808080" />
+      <rect x="12" y="15" width="7" height="1" fill="#808080" />
+    </svg>
+  );
+}
+
+function System7InspirationsGlyph(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      shapeRendering="crispEdges"
+      role="img"
+      aria-hidden="true"
+      {...props}
+    >
+      <rect x="10" y="5" width="12" height="20" fill="#ffffff" />
+      <rect x="10" y="5" width="12" height="1" fill="#000000" />
+      <rect x="10" y="5" width="1" height="20" fill="#000000" />
+      <rect x="21" y="5" width="1" height="20" fill="#000000" />
+      <rect x="10" y="24" width="4" height="1" fill="#000000" />
+      <rect x="18" y="24" width="4" height="1" fill="#000000" />
+      <rect x="14" y="22" width="4" height="4" fill="#d0d0d0" />
+      <rect x="14" y="22" width="4" height="1" fill="#000000" />
+      <rect x="14" y="25" width="4" height="1" fill="#000000" />
+      <rect x="14" y="22" width="1" height="4" fill="#000000" />
+      <rect x="17" y="22" width="1" height="4" fill="#000000" />
+      <rect x="13" y="10" width="6" height="1" fill="#000000" />
+      <rect x="13" y="13" width="5" height="1" fill="#4f4f4f" />
+    </svg>
+  );
+}
+
+function GruvboxInspirationsGlyph(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      shapeRendering="crispEdges"
+      role="img"
+      aria-hidden="true"
+      {...props}
+    >
+      <rect x="9" y="4" width="14" height="22" fill="#fabd2f" />
+      <rect x="9" y="4" width="14" height="1" fill="#7c6f64" />
+      <rect x="9" y="4" width="1" height="22" fill="#7c6f64" />
+      <rect x="22" y="4" width="1" height="22" fill="#7c6f64" />
+      <rect x="9" y="26" width="5" height="1" fill="#7c6f64" />
+      <rect x="18" y="26" width="5" height="1" fill="#7c6f64" />
+      <rect x="14" y="23" width="4" height="4" fill="#d79921" />
+      <rect x="14" y="23" width="4" height="1" fill="#7c6f64" />
+      <rect x="14" y="26" width="4" height="1" fill="#7c6f64" />
+      <rect x="14" y="23" width="1" height="4" fill="#7c6f64" />
+      <rect x="17" y="23" width="1" height="4" fill="#7c6f64" />
+      <rect x="12" y="9" width="8" height="1" fill="#af3a03" />
+      <rect x="12" y="12" width="6" height="1" fill="#665c54" />
+      <rect x="12" y="15" width="7" height="1" fill="#665c54" />
+    </svg>
+  );
+}
+
 /**
  * Add new desktop shortcuts here. Order = top-to-bottom in the icon column.
  * To add a new app shortcut: register the app in `lib/desktop/apps.ts`,
@@ -480,6 +683,28 @@ export const DESKTOP_ICONS: DesktopIconDef[] = [
     glyphByTheme: {
       win95: Win95ProjectsGlyph,
       system7: System7ProjectsGlyph,
+    },
+  },
+  {
+    id: "essays",
+    appId: "essays",
+    label: "Essays",
+    Glyph: MacosEssaysGlyph,
+    glyphByTheme: {
+      win95: Win95EssaysGlyph,
+      system7: System7EssaysGlyph,
+      gruvbox: GruvboxEssaysGlyph,
+    },
+  },
+  {
+    id: "inspirations",
+    appId: "inspirations",
+    label: "Inspirations",
+    Glyph: MacosInspirationsGlyph,
+    glyphByTheme: {
+      win95: Win95InspirationsGlyph,
+      system7: System7InspirationsGlyph,
+      gruvbox: GruvboxInspirationsGlyph,
     },
   },
   {

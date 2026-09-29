@@ -1,6 +1,7 @@
 @import "./themes/macos.css";
 @import "./themes/system7.css";
 @import "./themes/win95.css";
+@import "./themes/gruvbox.css";
 
 @font-face {
   font-family: "System7UI";
